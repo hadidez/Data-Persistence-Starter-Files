@@ -1,0 +1,26 @@
+﻿<Properties StartupConfiguration="{6070F9DA-46E4-BF8A-676A-9EB4374FC737}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SaveData.cs">
+    <Files>
+      <File FileName="Assets/Scripts/MainManager.cs" Line="29" Column="38" />
+      <File FileName="Assets/Scripts/Brick.cs" Line="18" Column="27" />
+      <File FileName="Assets/Scripts/SaveData.cs" Line="41" Column="13" />
+      <File FileName="Assets/Scripts/DeathZone.cs" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Data-Persistence-Starter-Files" expanded="True" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="7b661942-1632-4d6d-9951-cece4524942e" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/hadiseylani/Documents/Unity Project/Data-Persistence-Starter-Files/Assets/Scripts/SaveData.cs" relfile="Assets/Scripts/SaveData.cs" line="40" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

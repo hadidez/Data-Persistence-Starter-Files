@@ -11,17 +11,28 @@ public class MainManager : MonoBehaviour
     public Rigidbody Ball;
 
     public Text ScoreText;
-    public GameObject GameOverText;
+    public Text GameOverText;
     
     private bool m_Started = false;
     private int m_Points;
     
     private bool m_GameOver = false;
-
+    private bool isNewRecord = false;
+    [SerializeField] private Text bestScoreTxt;
+    [SerializeField] private int bestScore;
+    [SerializeField] private string bestPlayer;
+    [SerializeField] private InputField inputField;
     
     // Start is called before the first frame update
     void Start()
     {
+        if(SaveData.Instance!=null)
+        {
+            SaveData.Instance.Load();
+            bestScore = SaveData.Instance.Score;
+            bestPlayer = SaveData.Instance.PlayerName;
+            bestScoreTxt.text = "Best Score " + bestPlayer + ": " + bestScore;
+        }
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
         
@@ -48,16 +59,28 @@ public class MainManager : MonoBehaviour
                 float randomDirection = Random.Range(-1.0f, 1.0f);
                 Vector3 forceDir = new Vector3(randomDirection, 1, 0);
                 forceDir.Normalize();
-
                 Ball.transform.SetParent(null);
                 Ball.AddForce(forceDir * 2.0f, ForceMode.VelocityChange);
             }
         }
         else if (m_GameOver)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (isNewRecord)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    SaveData.Instance.Score = m_Points;
+                    SaveData.Instance.PlayerName = inputField.text;
+                    SaveData.Instance.Save();
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                }
+            }
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                }
             }
         }
     }
@@ -71,6 +94,16 @@ public class MainManager : MonoBehaviour
     public void GameOver()
     {
         m_GameOver = true;
-        GameOverText.SetActive(true);
+        GameOverText.gameObject.SetActive(true);
+        if (m_Points > bestScore)
+        {
+            isNewRecord = true;
+            inputField.gameObject.SetActive(true);
+            GameOverText.text = "GAME OVER\nNew High Score!";
+        }
+        else
+        {
+            GameOverText.text = "GAME OVER\n\nPress Space to Restart";
+        }    
     }
 }
